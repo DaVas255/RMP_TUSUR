@@ -1,7 +1,15 @@
 abstract class MainScreenState {}
 
-class MainScreenUpdateCounterState extends MainScreenState {
-  final int value;
+class MainScreenInitialState extends MainScreenState {}
 
-  MainScreenUpdateCounterState({required this.value});
+class MainScreenCalculatedState extends MainScreenState {
+  final double energy;
+
+  MainScreenCalculatedState(this.energy);
+}
+
+class MainScreenErrorState extends MainScreenState {
+  final String message;
+
+  MainScreenErrorState(this.message);
 }
