@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 class SecondScreen extends StatelessWidget {
@@ -8,16 +9,16 @@ class SecondScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double kineticEnergy = 0.5 * mass * velocity * velocity;
+    double kineticEnergy = mass * pow(velocity, 2) / 2;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Результат вычислений'),
+        title: Text('Результат'),
       ),
       body: Center(
         child: Text(
-          'Кинетическая энергия = ${kineticEnergy.toStringAsFixed(10)} Дж',
-          style: TextStyle(fontSize: 18),
+          'Кинетическая энергия: ${kineticEnergy.toStringAsFixed(2)} дж',
+          style: const TextStyle(fontSize: 20),
         ),
       ),
     );
