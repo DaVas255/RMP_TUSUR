@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubit/kinetic_energy_cubit.dart';
+import 'cubit/main_screen_state.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -79,10 +80,16 @@ class _MainScreenState extends State<MainScreen> {
               },
               child: const Text('Рассчитать'),
             ),
-            BlocBuilder<KineticEnergyCubit, double>(
-              builder: (context, energy) {
-                return Text('Энергия: $energy Дж');
-              },
+            BlocBuilder<KineticEnergyCubit, MainScreenState>(
+              builder: (context, state) {
+                if (state is MainScreenCalculatedState) {
+                  return Text('Энергия: ${state.energy} Дж');
+                } else if (state is MainScreenInitialState) {
+                  return const Text('Энергия: 0.0 Дж');
+                } else {
+                  return const Text("error");
+                }
+              }
             ),
           ]),
         ),
