@@ -33,7 +33,7 @@ class _FirstScreenState extends State<FirstScreen> {
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(labelText: 'Масса (кг)'),
                 validator: (value) {
-                  if (value == null || value.isEmpty) return 'Введите массу';
+                  if (value!.isEmpty) return 'Введите массу';
                   if (double.parse(value) <= 0) {
                     return 'Некорректное значение массы';
                   }
@@ -54,13 +54,9 @@ class _FirstScreenState extends State<FirstScreen> {
               Row(
                 children: [
                   Checkbox(
-                    value: isChecked,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isChecked = value ?? false;
-                      });
-                    },
-                  ),
+                      value: isChecked,
+                      onChanged: (bool? value) =>
+                          setState(() => isChecked = value!)),
                   const Text('Я согласен с обработкой данных'),
                 ],
               ),
