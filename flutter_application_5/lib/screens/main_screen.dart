@@ -1,8 +1,8 @@
-// main_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubit/kinetic_energy_cubit.dart';
 import 'cubit/main_screen_state.dart';
+import 'HistoryScreen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -19,7 +19,18 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Васильчиков Данил Александрович')),
+      appBar: AppBar(
+        title: const Text('Васильчиков Данил Александрович'),
+        leading: IconButton(
+          icon: const Icon(Icons.history),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HistoryScreen()),
+            );
+          },
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Form(
