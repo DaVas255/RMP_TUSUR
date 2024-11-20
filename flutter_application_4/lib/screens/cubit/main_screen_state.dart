@@ -8,8 +8,8 @@ class MainScreenCalculatedState extends MainScreenState {
   MainScreenCalculatedState(this.energy);
 }
 
-class MainScreenErrorState extends MainScreenState {
-  final String message;
+class MainScreenResultState extends MainScreenState {
+  final String result;
 
-  MainScreenErrorState(this.message);
+  MainScreenResultState(this.result);
 }
