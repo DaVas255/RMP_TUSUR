@@ -85,14 +85,21 @@ class _MainScreenState extends State<MainScreen> {
               },
               child: const Text('Рассчитать'),
             ),
+            ElevatedButton(
+                onPressed: () {
+                  context.read<KineticEnergyCubit>().clearResult();
+                  massController.clear();
+                  speedController.clear();
+                },
+                child: const Text('Очистить')),
             BlocBuilder<KineticEnergyCubit, MainScreenState>(
                 builder: (context, state) {
-              if (state is MainScreenCalculatedState) {
-                return Text('Энергия: ${state.energy} Дж');
-              } else if (state is MainScreenInitialState) {
-                return const Text('Энергия: 0.0 Дж');
+              if (state is MainScreenInitialState) {
+                return const Text('Введите данные для расчета.');
+              } else if (state is MainScreenResultState) {
+                return Text(state.result);
               } else {
-                return const Text("error");
+                return const Text("Произошла ошибка. Попробуйте снова.");
               }
             }),
           ]),

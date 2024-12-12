@@ -22,7 +22,6 @@ class DBProvider {
   }
 
   Future<void> _createDB(Database db, int version) async {
-    print('Создание таблицы...');
     await db.execute('''
           CREATE TABLE energy_data (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -31,7 +30,6 @@ class DBProvider {
             energy REAL
           )
         ''');
-    print('Таблица создана!');
   }
 
   Future<void> insertEnergyData(
@@ -43,7 +41,8 @@ class DBProvider {
 
   Future<List<Map<String, dynamic>>> getEnergyData() async {
     Database db = await database;
-    final List<Map<String, dynamic>> result = await db.query('energy_data');
+    final List<Map<String, dynamic>> result =
+        await db.query('energy_data', orderBy: 'id DESC');
     return result;
   }
 }
