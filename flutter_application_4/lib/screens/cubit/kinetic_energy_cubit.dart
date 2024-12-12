@@ -9,5 +9,14 @@ class KineticEnergyCubit extends Cubit<MainScreenState> {
   void calculateEnergy(double mass, double velocity) {
     double energy = mass * pow(velocity, 2) / 2;
     emit(MainScreenCalculatedState(energy));
+    outputEnergy(energy);
+  }
+
+  void outputEnergy(double energy) {
+    emit(MainScreenResultState('Кинетическая энергия составляет: $energy Дж'));
+  }
+
+  void clearResult() {
+    emit(MainScreenInitialState());
   }
 }

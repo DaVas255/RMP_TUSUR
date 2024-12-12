@@ -11,14 +11,14 @@ class DBProvider {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await initDB();
+    _database = await _initDB();
     return _database!;
   }
 
-  Future<Database> initDB() async {
+  Future<Database> _initDB() async {
     Directory dir = await getApplicationDocumentsDirectory();
-    String path = '${dir.path}energy.db';
-    return await openDatabase(path, version: 2, onCreate: _createDB);
+    String path = dir.path + 'energy.db';
+    return await openDatabase(path, version: 1, onCreate: _createDB);
   }
 
   Future<void> _createDB(Database db, int version) async {
